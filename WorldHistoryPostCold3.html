@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World History Quiz: World History</title>
+    <style>
+        /* Styling for the quiz */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+
+        #quiz-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        #question-container {
+            margin-top: 20px;
+        }
+
+        .choice-button {
+            display: block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .choice-button:hover {
+            background: #0056b3;
+        }
+
+        #feedback {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-left: 5px solid #ccc;
+        }
+
+        #next-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+        }
+
+        #next-button:disabled {
+            background: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div id="quiz-container">
+        <h1>World History Quiz: Post Cold World Quiz #2</h1>
+        <div id="question-container"></div>
+        <button id="next-button">Next Question</button>
+        <div id="feedback"></div>
+    </div>
+    <script>
+        // JavaScript for quiz functionality
+        const questions = [
+{
+    question: "How did the global financial crisis of 2008 affect emerging economies?",
+    choices: [
+        "They experienced rapid economic growth",
+        "They faced reduced foreign investment and slower growth",
+        "They became the primary lenders to Western countries",
+        "They were unaffected by the crisis"
+    ],
+    correctAnswer: 1,
+    explanation: "Emerging economies faced reduced foreign investment and slower economic growth as the global financial crisis disrupted international markets."
+},
+{
+    question: "What was the significance of the Maastricht Treaty for Europe?",
+    choices: [
+        "It ended World War II",
+        "It established the European Union and the euro",
+        "It initiated the Cold War",
+        "It resolved territorial disputes in Eastern Europe"
+    ],
+    correctAnswer: 1,
+    explanation: "The Maastricht Treaty (1992) established the European Union and set the framework for the euro currency, deepening European integration."
+},
+{
+    question: "Why has cyber warfare become a critical issue in global politics?",
+    choices: [
+        "It only affects military targets",
+        "It can disrupt essential infrastructure and elections",
+        "It has replaced nuclear weapons as the primary form of warfare",
+        "It is limited to financial crimes"
+    ],
+    correctAnswer: 1,
+    explanation: "Cyber warfare is a critical issue because it can disrupt critical infrastructure, such as power grids and elections, posing security threats worldwide."
+},
+{
+    question: "What was a primary reason for the failure of the League of Nations?",
+    choices: [
+        "Its inability to enforce decisions without U.S. support",
+        "Its opposition to the Treaty of Versailles",
+        "Its support for colonialism",
+        "Its role in the Cold War"
+    ],
+    correctAnswer: 0,
+    explanation: "The League of Nations lacked enforcement power and suffered from the absence of the U.S., undermining its ability to maintain peace."
+},
+{
+    question: "What was the main purpose of the Bretton Woods Agreement in 1944?",
+    choices: [
+        "To establish NATO",
+        "To create a global economic system",
+        "To end World War II",
+        "To resolve territorial disputes"
+    ],
+    correctAnswer: 1,
+    explanation: "The Bretton Woods Agreement created institutions like the IMF and World Bank to regulate international trade and finance post-World War II."
+},
+{
+    question: "Why is the South China Sea a region of geopolitical tension?",
+    choices: [
+        "It is the world's largest source of fresh water",
+        "It contains significant natural resources and trade routes",
+        "It is controlled entirely by one nation",
+        "It has no strategic importance"
+    ],
+    correctAnswer: 1,
+    explanation: "The South China Sea is critical due to its vast natural resources, including oil and gas, and its importance as a major global trade route."
+},
+{
+    question: "What was a significant outcome of the United States' withdrawal from the Paris Agreement in 2017?",
+    choices: [
+        "Increased global collaboration on climate change",
+        "Weakened international climate change efforts",
+        "Immediate global temperature stabilization",
+        "The end of renewable energy development"
+    ],
+    correctAnswer: 1,
+    explanation: "The U.S. withdrawal weakened international climate change efforts, as it is a major contributor to global greenhouse gas emissions."
+},
+{
+    question: "How has artificial intelligence (AI) impacted global economies?",
+    choices: [
+        "It has reduced the need for cybersecurity",
+        "It has created entirely new industries and disrupted traditional jobs",
+        "It has slowed economic growth",
+        "It has eliminated the need for global trade"
+    ],
+    correctAnswer: 1,
+    explanation: "AI has created new industries like machine learning and robotics while disrupting traditional jobs, requiring adaptation in global economies."
+},
+{
+    question: "What was the primary goal of China's one-child policy?",
+    choices: [
+        "To promote rural development",
+        "To control population growth",
+        "To increase workforce productivity",
+        "To encourage gender equality"
+    ],
+    correctAnswer: 1,
+    explanation: "China's one-child policy, introduced in 1979, aimed to control population growth but led to long-term demographic challenges."
+},
+{
+    question: "What was the significance of the Oslo Accords of 1993?",
+    choices: [
+        "They ended the Cold War",
+        "They created a framework for peace between Israel and Palestine",
+        "They established NATO",
+        "They resolved territorial disputes in Africa"
+    ],
+    correctAnswer: 1,
+    explanation: "The Oslo Accords aimed to establish a framework for peace between Israel and Palestine, including Palestinian self-governance in certain areas."
+},
+{
+    question: "Which economic concept describes the interdependence of national economies in a globalized world?",
+    choices: [
+        "Isolationism",
+        "Supply and demand",
+        "Economic interdependence",
+        "Protectionism"
+    ],
+    correctAnswer: 2,
+    explanation: "Economic interdependence describes how national economies are interconnected through trade, investment, and production in a globalized world."
+},
+{
+    question: "Why did the Soviet Union invade Afghanistan in 1979?",
+    choices: [
+        "To spread communism and support a pro-Soviet government",
+        "To access natural resources",
+        "To oppose NATO expansion",
+        "To prevent Chinese influence in the region"
+    ],
+    correctAnswer: 0,
+    explanation: "The Soviet Union invaded Afghanistan to support a pro-Soviet government and suppress opposition to communist rule."
+},
+{
+    question: "What was the role of microfinance in developing economies?",
+    choices: [
+        "It provided large loans for multinational corporations",
+        "It offered small loans to entrepreneurs in poor communities",
+        "It regulated international banking standards",
+        "It eliminated the need for foreign aid"
+    ],
+    correctAnswer: 1,
+    explanation: "Microfinance provides small loans to entrepreneurs in poor communities, helping them start businesses and reduce poverty."
+},
+{
+    question: "What challenge is associated with the use of fossil fuels in global energy production?",
+    choices: [
+        "Decreased availability of renewable resources",
+        "Increased greenhouse gas emissions and climate change",
+        "A decline in global energy demand",
+        "Limited technological advancements"
+    ],
+    correctAnswer: 1,
+    explanation: "Fossil fuels contribute to greenhouse gas emissions, which accelerate global warming and climate change."
+},
+{
+    question: "What was a significant effect of the end of apartheid in South Africa?",
+    choices: [
+        "The rise of Nelson Mandela as a global leader",
+        "The collapse of the African Union",
+        "The establishment of a communist government",
+        "The withdrawal of NATO from Africa"
+    ],
+    correctAnswer: 0,
+    explanation: "The end of apartheid led to democratic reforms in South Africa and Nelson Mandela's presidency, symbolizing reconciliation and progress."
+},
+{
+    question: "Why is the Arctic region increasingly important in global geopolitics?",
+    choices: [
+        "It is the largest producer of freshwater",
+        "Melting ice is opening new shipping routes and access to resources",
+        "It is the center of global trade networks",
+        "It has the world's largest population"
+    ],
+    correctAnswer: 1,
+    explanation: "Melting Arctic ice is opening new shipping routes and granting access to untapped natural resources, increasing its geopolitical significance."
+},
+{
+    question: "What is a primary challenge posed by automation in the workforce?",
+    choices: [
+        "Decline in energy consumption",
+        "Displacement of workers in traditional industries",
+        "Increased reliance on manual labor",
+        "Slower economic growth"
+    ],
+    correctAnswer: 1,
+    explanation: "Automation displaces workers in industries like manufacturing and transportation, requiring reskilling and adaptation to new technologies."
+},
+{
+    question: "What event marked the beginning of the War on Terror?",
+    choices: [
+        "The fall of the Berlin Wall",
+        "The September 11, 2001 terrorist attacks",
+        "The invasion of Iraq",
+        "The end of the Cold War"
+    ],
+    correctAnswer: 1,
+    explanation: "The War on Terror began after the September 11, 2001 attacks, focusing on combating terrorism globally."
+},
+{
+    question: "Which region faces significant water scarcity issues due to climate change?",
+    choices: [
+        "Sub-Saharan Africa",
+        "Southeast Asia",
+        "Northern Europe",
+        "The Amazon Basin"
+    ],
+    correctAnswer: 0,
+    explanation: "Sub-Saharan Africa faces water scarcity due to climate change, leading to challenges in agriculture, health, and development."
+},
+{
+    question: "What is a key objective of the Belt and Road Initiative?",
+    choices: [
+        "To reduce greenhouse gas emissions",
+        "To build infrastructure connecting Asia, Europe, and Africa",
+        "To promote free speech globally",
+        "To enforce international sanctions"
+    ],
+    correctAnswer: 1,
+    explanation: "China's Belt and Road Initiative aims to build infrastructure, such as roads and ports, to enhance trade and connectivity across Asia, Europe, and Africa."
+}
+
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        const questionContainer = document.getElementById("question-container");
+        const feedbackContainer = document.getElementById("feedback");
+        const nextButton = document.getElementById("next-button");
+
+        function loadQuestion() {
+            const question = questions[currentQuestion];
+            questionContainer.innerHTML = `
+                <h2>${question.question}</h2>
+                ${question.choices.map((choice, index) => `
+                    <button class="choice-button" data-choice="${index}">${choice}</button>
+                `).join('')}
+            `;
+            feedbackContainer.innerHTML = "";
+            nextButton.style.display = "none";
+
+            const choiceButtons = document.querySelectorAll(".choice-button");
+            choiceButtons.forEach(button => {
+                button.addEventListener("click", (e) => {
+                    const userAnswer = parseInt(e.target.getAttribute("data-choice"));
+                    checkAnswer(userAnswer);
+                });
+            });
+        }
+
+        function checkAnswer(userAnswer) {
+            const question = questions[currentQuestion];
+            const isCorrect = userAnswer === question.correctAnswer;
+            feedbackContainer.innerHTML = `
+                <p>${isCorrect ? "Correct!" : "Incorrect."}</p>
+                <p>${isCorrect ? "" : `The correct answer is: ${question.choices[question.correctAnswer]}`}</p>
+                <p>${question.explanation}</p>
+            `;
+            if (isCorrect) score++;
+            nextButton.style.display = "block";
+
+            // Disable buttons after selecting an answer
+            const choiceButtons = document.querySelectorAll(".choice-button");
+            choiceButtons.forEach(button => button.disabled = true);
+        }
+
+        nextButton.addEventListener("click", () => {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                questionContainer.innerHTML = `
+                    <h2>Quiz Complete!</h2>
+                    <p>Your Score: ${score} / ${questions.length}</p>
+                `;
+                nextButton.style.display = "none";
+            }
+        });
+
+        // Load the first question on startup
+        loadQuestion();
+    </script>
+</body>
+</html>
